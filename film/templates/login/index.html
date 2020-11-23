@@ -1,0 +1,425 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>简影JanFilm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Movie_store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- start plugins -->
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jQuery-2.2.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/xs.js' %}"></script>
+
+<!--{#    <link href='http://fonts.useso.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet'#}-->
+<!--{#          type='text/css'>#}-->
+
+    <!--css-->
+    {% block styles %}
+    {% endblock %}
+
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+        $(function () {
+            $("#carousel ").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		/*调整容器大小*/
+		#myCarousel {
+            display: block;
+			width: 200px;
+            height: 700px;
+		}
+		/*调整圆圈链接ol位置*/
+		.carousel-indicators {
+			bottom: -5px;
+		}
+		/*调整轮播图位置*/
+		#carousel-example-generic {
+			top: 5px;
+		}
+	</style>
+        <!--js-->
+    {% block scripts %}
+    {% endblock %}
+
+</head>
+
+    <body>
+{#         <div style="background: #cc3f3c; top: 0; height: 70px; width: 100%"></div>#}
+        <nav class="navbar navbar-default" style="background: #cc0000">
+
+            <div class="container top" style="background: #dcf0f0">
+                <div class="container_wrap" style="width: 100%;">
+                    {% if request.session.is_login %}
+{#                        <a style="font-size: 0px; text-decoration: none ;color: #40cc6f">#}
+{#                            &nbsp欢迎用户&nbsp{{ request.session.user_name }}&nbsp进入简影JanFilm系统主页！</a>#}
+                        <div class="navbar-right">
+                            <a href="./logout/" style="font-size: 14px; text-decoration: none ;color: #ff0005">
+                                登出&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                        </div>
+                        <div class="navbar-right">
+                            <a href="./user_page/" style="font-size: 14px; text-decoration: none ;color: #ff0005">
+                                我的主页&nbsp&nbsp&nbsp</a>
+                        </div>
+                    {% else %}
+{#                        <a style="font-size: 16px; text-decoration: none ;color: #40cc6f">&nbsp提示：您还没有登陆，只能访问公共内容！</a>#}
+                        <div class="navbar-right">
+                            <a class="my_button" href="./register/" style=" text-decoration: none ;
+                            color: #25faff; padding: 6px 7px">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                注册&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                        </div>
+                        <div class="navbar-right">
+                            <a class="my_button" href="./login/" style=" text-decoration: none;
+                            color: #25faff; padding: 6px 7px">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                登录&nbsp&nbsp&nbsp</a>
+                        </div>
+                    {% endif %}
+                    <div class="header_top"  style="background: #000000; height: 165px" >
+                        <div class="col-sm-3 logo">
+                            <a class="my_button" href="/film/" style="font-size: 26px; text-decoration: none;color: #25faff ">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                JanFilm</a>
+                        </div>
+                        <form class="navbar-form navbar-right" method="get" action="./search/">
+                        {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="输入电影名、导演、演员" name="T_search">
+                            </div>
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </form>
+
+                        <div class="text-center" >
+                            <h4>
+                                <a href="./recommend/" style="text-decoration: none">不知道看什么？试试我们的推荐吧！</a>
+                            </h4>
+                        </div>
+
+                        <div >
+                              <a class="my_button" href="./ranking/"
+                                 style="padding: 5px 10px; color: #40cc6f">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                电影排行</a>
+                              <a class="my_button" href="./last_film/"
+                                 style="padding: 5px 10px; color: #96d2ff">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                最新上映</a>
+                              <a class="my_button" href="./unpopular/"
+                                 style="padding: 5px 10px; color: #b5eeff">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                冷门佳片</a>
+                              <a class="my_button" href="./encounter/"
+                                 style="padding: 5px 10px; color: #ffc0cb">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                偶遇电影</a>
+{#                              <a class="my_button" href="./high/"#}
+{#                                 style="padding: 5px 10px; color: white">#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                豆瓣高分#}
+{#                              </a>#}
+
+                              <a class="my_button" href="./films/"
+                                 style="padding: 7px 12px; ">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                分类</a>
+                        </div>
+                    </div>
+
+                    <div style="width: 70%">
+                        <div style="margin-left: 4%">
+                            <h2>今日推荐<span>
+                                    <a href="./films" style="font-size: 15px">
+                                        更多热门&raquo;</a></span>
+                                </h2>
+                        </div>
+                        {% for film in film_rand %}
+                        <div class="col-md-3" >
+                            <ul class="list-group" >
+                                <li class="list-group-item" style="background: #c8f0f0; width: 200px; height: 300px">
+                                    <div class="basic-info">
+                                        <div class="film-info">
+                                            <h4><a style="text-decoration: none;color: #4143ff"
+                                                    href=./film_info/?film_get={{ film.0 }} >
+                                                {{ film.2 }}</a></h4>
+                                            <div class="fakeimg">
+                                                    <a href="./film_info/?film_get={{ film.0 }}" >
+                                                        <img src="/static/douban_poster/{{ film.1 }}.jpg"
+                                                        height="260px" width="175px">
+                                                    </a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div style="margin-left: 75%">
+
+                        <div >
+                                <h2>简影口碑榜<span>
+                                    <a href="./films" style="font-size: 15px">
+                                        更多榜单&raquo;</a></span>
+                                </h2>
+
+                        </div>
+                        <br>
+                        <div >
+                            <table style="border-collapse:separate; border-spacing:1px 10px;">
+                                <tr>
+                                    <th>1.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=11">
+                                            哈尔的移动城堡
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>2.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=13">
+                                            加勒比海盗
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>3.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=17">
+                                            七宗罪
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>4.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=21">
+                                            情书
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>5.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=27">
+                                            敦刻尔克 Dunkirk
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>6.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=29">
+                                            恐怖游轮 Triangle
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>7.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=30">
+                                            断背山 Brokeback Mountain
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>8.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=33">
+                                            功夫熊猫 Kung Fu Panda
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>9.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=39">
+                                            天堂电影院 Nuovo Cinema Paradiso
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>10.</th>
+                                    <td >
+                                        <a href="./film_info/?film_get=45">
+                                            魔女宅急便 魔女の宅急便
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                </table>
+                            </div>
+
+                    </div>
+
+                    <div class="container navbar-left" id="myCarousel" style="width: 75%">
+                        <div class="page-header">
+                            <h2>简影热门推荐<span>
+                                    <a href="./encounter" style="font-size: 15px">
+                                        更多推荐&raquo;</a></span>
+                            </h2>
+                        </div>
+                            <!-- 轮播图容器 -->
+                            <div id="carousel-example-generic" class="carousel slide">
+                                <!-- 轮播图上的圆圈链接 -->
+                                <ol class="carousel-indicators radiou">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+                                <!-- 轮播图具体内容 -->
+                                <div class="carousel-inner">
+
+                                    <div class="item active">
+                                        <img src="/static/images/new/灰姑娘药剂师.jpg">
+                                        <!-- 图上文字 -->
+                                        <div class="carousel-caption">
+                                            <a href="/film/film_info/?film_get=4565" style="font-size: 20px; text-decoration: none ;color: white">
+                                                 灰姑娘药剂师
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <img src="/static/images/new/花木兰.jpg" >
+                                        <!-- 图上文字 -->
+                                        <div class="carousel-caption">
+                                            <a href="/film/film_info/?film_get=149" style="font-size: 20px; text-decoration: none ;color: white">
+                                                 花木兰
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="/static/images/new/辉夜大小姐想让我告白.jpg" >
+                                        <!-- 图上文字 -->
+                                        <div class="carousel-caption">
+                                            <a href="/film/film_info/?film_get=3693" style="font-size: 20px; text-decoration: none ;color: white">
+                                                 辉夜大小姐想让我告白
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- 轮播图上的向前一图切换链接 -->
+                                <a href="#carousel-example-generic" data-slide="prev" class="left carousel-control">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <!-- 轮播图上的向后一图切换链接 -->
+                                <a href="#carousel-example-generic" data-slide="next" class="right carousel-control">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 引入jquery与bootstrap的js文件 -->
+                        <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+                        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+                </div>
+
+                <div class="container" style="width: 100%;">
+                        <footer id="footer">
+                            <div id="footer-3d">
+                                <div class="gp-container">
+                                    <span class="first-widget-bend"></span>
+                                </div>
+                            </div>
+                            <div id="footer-widgets" class="gp-footer-larger-first-col">
+                                <div class="gp-container">
+                                    <div class="footer-widget footer-1">
+                                        <div class="wpb_wrapper">
+                                            {# <img src="{% static 'images/f_logo.png' %}" alt=""/>#}
+                                            <span style="font-size: 26px">简影JanFilm</span>
+                                        </div>
+                                        <br>
+                                        <p>能给你的都给你了</p>
+                                        <p class="text">持续更新优化中</p>
+                                    </div>
+                                    <div class="footer_box">
+                                        <div class="col_1_of_3 span_1_of_3">
+                                            <h3>友情链接</h3>
+                                            <ul class="first">
+                                                <li><a href="http://bilibili.com/" style=" text-decoration: none ">- 放飞自我</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col_1_of_3 span_1_of_3">
+                                            <h3>关于我们</h3>
+                                            <ul class="first">
+                                                <li><a href="#" style=" text-decoration: none ">- tree new bee</a></li>
+                                                <li><a href="#" style=" text-decoration: none ">- coming soon</a></li>
+                                                {#  <li><a href="#">Specials</a></li>#}
+                                            </ul>
+                                        </div>
+                                        <div class="col_1_of_3 span_1_of_3">
+                                            <h3>联系我们</h3>
+                                            <ul class="first">
+                                                <li><a href="#" style=" text-decoration: none ">- 电话：1234567890</a></li>
+                                                <li><a href="#" style=" text-decoration: none ">- Email：null@qq.com</a></li>
+                                            </ul>
+                                            <div class="copy">
+                                                <p>Copyright &copy; 2017 tree new bee</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                    </footer>
+                </div>
+            </div>
+
+        </nav>
+    </body>
+</html>

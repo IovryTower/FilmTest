@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——电影分类{% endblock %}
+
+{% block content %}
+    <div class="container" style="color: black;background: #c8f0f0; width: 98%">
+        <br>
+	    <h2 class="text-center" >按精准分类选择电影</h2>
+        <br>
+        <div class="navbar-left" style="background: #ffffff">
+            <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <br>
+            <form method="get" >
+                <div class="btn-group" data-toggle="buttons" id="btn_group_sort" >
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none;">
+                        <input type="radio" name="options"  value="全部分类">全部分类
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="剧情">剧情
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="喜剧">喜剧
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="动作">动作
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="喜剧">爱情
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="科幻">科幻
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="动画">动画
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="悬疑">悬疑
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="惊悚">惊悚
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="恐怖">恐怖
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="犯罪">犯罪
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="同性">同性
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="音乐">音乐
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="传记">传记
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options" value="历史">历史
+                    </label>
+                </div>
+
+                <div class="btn-group" data-toggle="buttons" id="btn_group_part">
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="全部地区">全部地区
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="中国大陆">中国大陆
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="美国">美国
+                    </label>
+                     <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="香港">香港
+                    </label>
+                     <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="台湾">台湾
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="日本">日本
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="韩国">韩国
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="英国">英国
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="法国">法国
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="德国">德国
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="西班牙">西班牙
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="英国">英国
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="印度">印度
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options2" value="其他">其他
+                    </label>
+                </div>
+
+                <div class="btn-group" data-toggle="buttons" id="btn_group_era">
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="全部年代">全部年代
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="2020">2020
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="2019">2019
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="2018">2018
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="2017">2017
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="2010年代">2010年代
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="90年代">90年代
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options3" value="更早">更早
+                    </label>
+                </div>
+
+                <br>
+                <div class="btn-group" data-toggle="buttons" id="btn_group_tag">
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="全部标签">全部标签
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="经典">经典
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="青春">青春
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="文艺">文艺
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="搞笑">搞笑
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="励志">励志
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="魔幻">魔幻
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="感人">感人
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="黑帮">黑帮
+                    </label>
+                    <label class="btn btn-primary" style="background: white;color: black;border-style: none">
+                        <input type="radio" name="options4" value="其他">其他
+                    </label>
+                </div>
+
+                <br>
+                <br>
+                <input type="submit" value="确认选择这些类型" class="btn btn-primary col-sm-12"
+                       style="background: white;color: black;border-color: black">
+                <br>
+            </form>
+            <br/>
+            <br/>
+        {% for all_list in all %}
+            <div class="col-md-3" >
+                <ul class="list-group" >
+                    <li class="list-group-item" style="background: bisque">
+                        <div class="basic-info">
+                            <div class="film-info">
+                                <h2 ><a style="text-decoration: none;color: red"
+                                                            href={{ all_list.film_action_title}} >
+                                                        {{ all_list.film_action_name }}</a></h2>
+                                <span class="label label-default">{{ all_list.film_action_tag1 }}</span>
+                                <span class="label label-primary">{{ all_list.film_action_tag2 }}</span>
+                                <span class="label label-success">{{ all_list.film_action_tag3 }}</span>
+                                <span class="label label-info">{{ all_list.film_action_tag4 }}</span>
+                                <span class="label label-warning">{{ film_num.film_action_tag5 }}</span>
+                                <div class="fakeimg">
+                                        <a href="{{ all_list.film_action_title }}" >
+                                            <img src="/static/douban_poster/{{ all_list.film_url }}.jpg" height="280px" width="189px">
+                                        </a>
+                                    </div>
+                                <p>{{ all_list.film_action_grade }}</p>
+                                <p>影评介绍...</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        {% endfor %}
+
+
+
+
+
+        </div>
+      </div>
+{% endblock %}

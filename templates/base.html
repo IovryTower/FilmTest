@@ -1,0 +1,200 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>{% block title %}base{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Movie_store Responsive web template, Bootstrap Web Templates, Flat Web Templates,
+    Andriod Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
+{#    <link href="{% static 'css/new/style.css' %}" rel='stylesheet' type='text/css'/>#}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- start plugins -->
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jQuery-2.2.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/xs.js' %}"></script>
+
+    <!--css-->
+    {% block styles %}
+    {% endblock %}
+  </head>
+
+  <body >
+     </div>
+    <nav class="navbar navbar-default" style="background: #cc0000">
+        <div class="container top" style="background: #c8f0f0">
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $(".container top").xs999(5);
+            });
+            </script>
+            <div class="header_top" style="background: #000000; height: 150px" >
+                <div class="col-sm-3 logo">
+    {#                <a href="http://amefilm1.pythonanywhere.com/" style="font-size: 26px; text-decoration: none; color: #D8232A">#}
+                    <a class="my_button" href="../" style="font-size: 26px; text-decoration: none; color: #25faff">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        JanFilm
+                    </a>
+                </div>
+                {% if request.session.is_login %}
+                    <div class="navbar-right">
+                        <a href=".././logout/" style="font-size: 14px; text-decoration: none ;color: #ff0005">
+                            登出&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        </a>
+                    </div>
+                    <div class="navbar-right">
+                        <a href=".././user_page/" style="font-size: 14px; text-decoration: none ;color: red">我的主页&nbsp&nbsp&nbsp</a>
+                    </div>
+                {% else %}
+                    <div class="navbar-right">
+                        <a class="my_button" href="../register/" style=" text-decoration: none ;
+                            color: #25faff; padding: 6px 7px">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                注册&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                        </div>
+                        <div class="navbar-right">
+                            <a class="my_button" href="../login/" style=" text-decoration: none;
+                            color: #25faff; padding: 6px 7px">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                登录&nbsp&nbsp&nbsp</a>
+                        </div>
+                {% endif %}
+                        <div class="col-sm-6 nav" style="top: 15px">
+                              <a class="my_button" href="../ranking/"
+                                 style="padding: 5px 10px; color: #40cc6f">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                电影排行</a>
+                              <a class="my_button" href="../last_film/"
+                                 style="padding: 5px 10px; color: #96d2ff">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                最新上映</a>
+                              <a class="my_button" href="../unpopular/"
+                                 style="padding: 5px 10px; color: #b5eeff">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                冷门佳片</a>
+                              <a class="my_button" href="../encounter/"
+                                 style="padding: 5px 10px; color: #ffc0cb">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                偶遇电影</a>
+{#                              <a class="my_button" href="./high/"#}
+{#                                 style="padding: 5px 10px; color: white">#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                  <span></span>#}
+{#                                豆瓣高分#}
+{#                              </a>#}
+
+                              <a class="my_button" href="../films/"
+                                 style="padding: 7px 12px; ">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                分类</a>
+                        </div>
+                {#                <form class="navbar-form navbar-right" method="get" action="http://amefilm1.pythonanywhere.com/search/" >#}
+
+                <div class="clearfix" style="top: 0px;">
+                    <form class="navbar-form navbar-right" method="get" action="../search/" >
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <input  type="text" class="form-control" placeholder="输入电影名、导演、演员" name="T_search">
+                        </div>
+                            <button type="submit" class="btn btn-default" >搜索</button>
+                    </form>
+
+                </div>
+            </div>
+
+
+        {% block content %}
+
+        {% endblock %}
+        <div class="container" style="background: #dcf0f0; width: 98%">
+        <footer id="footer">
+            <div id="footer-3d">
+                <div class="gp-container">
+                    <span class="first-widget-bend"></span>
+                </div>
+            </div>
+            <div id="footer-widgets" class="gp-footer-larger-first-col">
+                <div class="gp-container">
+                    <div class="footer-widget footer-1">
+                        <div class="wpb_wrapper">
+    {#                        <img src="{% static 'images/f_logo.png' %}" alt=""/>#}
+                            <span style="font-size: 26px">简影JanFilm</span>
+                        </div>
+                        <br>
+                        <p>能给你的都给你了</p>
+                        <p class="text">持续更新优化中</p>
+                    </div>
+                    <div class="footer_box">
+                        <div class="col_1_of_3 span_1_of_3">
+                            <h3>友情链接</h3>
+                            <ul class="first">
+                                <li><a href="http://bilibili.com/" style=" text-decoration: none ">- 放飞自我</a></li>
+                            </ul>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <h3>关于我们</h3>
+                            <ul class="first">
+                                <li><a href="#" style=" text-decoration: none ">- tree new bee</a></li>
+                                <li><a href="#" style=" text-decoration: none ">- coming soon</a></li>
+    {#                            <li><a href="#">Specials</a></li>#}
+                            </ul>
+                        </div>
+                        <div class="col_1_of_3 span_1_of_3">
+                            <h3>联系我们</h3>
+                            <ul class="first">
+                                <li><a href="#" style=" text-decoration: none ">- 电话：1234567890</a></li>
+                                <li><a href="#" style=" text-decoration: none ">- Email：null@qq.com</a></li>
+                            </ul>
+                            <div class="copy">
+                                <p>Copyright &copy; 2017 tree new bee</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </footer>
+        </div>
+
+        </div>
+    </nav>
+  </body>
+</html>

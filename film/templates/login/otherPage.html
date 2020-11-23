@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}用户主页{% endblock %}
+<script type="text/javascript">
+	function editUserPersonal(){
+	}
+</script>
+
+{% block content %}
+    <div class="container" style="background: white;background: grey">
+        <div class="row" >
+            <br />
+            <div class="col-sm-3 col-md-2">
+                <div class="thumbnail">
+                    <img src= "{{ request.session.tade_pic }}" style="width: 150px; height: 155px">
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-6" >
+                <ul class="list-group">
+                    <li class="list-group-item" style="background: bisque">用户名：{{ request.session.tade_name }}</li>
+                    <li class="list-group-item" style="background: seashell">性别：{{ request.session.tade_sex }}</li>
+                    <li class="list-group-item" style="background: #ebccd1">Ta的个性签名：{{ request.session.tade_personal }}</li>
+                    <li class="list-group-item" style="background: goldenrod">Ta的电影标签：{{ request.session.tade_movie_tag }}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3 col-md-4" >
+                <ul class="list-group" >
+                    <li class="list-group-item" style="background: bisque">
+                        <div class="basic-info">
+                            <div class="user-info">
+                                Ta的常居地:&nbsp;北京
+                                <br />
+                            <div class="pl">
+                                Ta的用户ID：{{ request.session.tade_id }} <br/>
+                                Ta的注册时间：{{ request.session.tade_c_time }}
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item" style="background: seashell">Ta的近期浏览</li>
+                    <li class="list-group-item" style="background: #ebccd1">《想哭的我戴上了猫的面具》</li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="#" class=text-center" style="text-decoration: none;color: gold">
+                Ta喜欢的电影&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </a>
+            <a href="#" class=text-center" style="text-decoration: none;color: gold">
+                Ta的收藏&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </a>
+            <a href="#" class=text-center" style="text-decoration: none;color: gold">
+                Ta的浏览&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </a>
+            <a href="#" class=text-center" style="text-decoration: none;color: gold">
+                Ta的评论
+            </a>
+        </div>
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: #5bc0de">
+                <h3 class="panel-title" >
+                    Ta的收藏
+                </h3>
+            </div>
+            <div class="panel-body text-center">
+                <div class="row" >
+                    <div class="col-sm-3 col-md-3" >
+                        <ul class="list-group">
+                            <li class="list-group-item" style="background: bisque">
+                                <img src="https://img1.doubanio.com/view/photo/raw/public/p2601636217.jpg "style="width: 220px;height: 300px">
+                            </li>
+                            <li class="list-group-item text-center" style="background: goldenrod">
+                                <a href="/film_info/" style="text-decoration: none;color: black">
+                                    电影名
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-md-3" >
+                        <ul class="list-group">
+                            <li class="list-group-item" style="background: bisque">
+                                <img src="https://img1.doubanio.com/view/photo/raw/public/p2601636217.jpg "style="width: 220px;height: 300px">
+                            </li>
+                            <li class="list-group-item text-center" style="background: goldenrod">
+                                <a href="/film_info/" style="text-decoration: none;color: black">
+                                    电影名
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-md-3" >
+                        <ul class="list-group">
+                            <li class="list-group-item" style="background: bisque">
+                                <img src="https://img1.doubanio.com/view/photo/raw/public/p2601636217.jpg "style="width: 220px;height: 300px">
+                            </li>
+                            <li class="list-group-item text-center" style="background: goldenrod">
+                                <a href="/film_info/" style="text-decoration: none;color: black">
+                                    电影名
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-md-3" >
+                        <ul class="list-group">
+                            <li class="list-group-item" style="background: bisque">
+                                <img src="/static/images/collect_add.jpg"style="width: 220px;height: 300px">
+                            </li>
+                            <li class="list-group-item text-center" style="background: goldenrod">
+                                <a href="/#/" style="text-decoration: none;color: black">
+                                    暂未添加
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="#" class=text-center" style="text-decoration: none;color: black">
+                    更多
+                </a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: #5bc0de">
+                <h3 class="panel-title" >
+                    Ta的评论
+                </h3>
+            </div>
+            <div class="panel-body">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseOne">
+                                《电影名》：时间，点击展开详情
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                这里显示具体评论
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseTwo">
+                                《电影名》：时间，点击展开详情
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            这里显示具体评论
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseThree">
+                                《电影名》：时间，点击展开详情
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                这里显示具体评论
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

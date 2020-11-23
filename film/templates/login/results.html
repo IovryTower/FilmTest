@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——搜索结果{% endblock %}
+
+{% block content %}
+    <div class="container text-center" style="height: 400px">
+        <div>
+            {% if error_msg %}
+                <p style="color: white">{{ error_msg }}</p>
+            {% else %}
+                {% for post in post_list %}
+                    <div >
+                    在这里显示搜索电影的相应信息
+                    </div>
+                {% empty %}
+                    <div class="no-post " >
+                        <p style="color: white">没有搜索到与符合输入信息“{{ q }}”相关的电影，去电影分类里看看吧</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+        </div>
+    </div>
+{% endblock %}

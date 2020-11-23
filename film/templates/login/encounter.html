@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="topAnchor" class="container"  style="background: #dcf0f0; width: 99%">
+    <div id="content" >
+    <br>
+    <h1 class="my_button"  >偶遇电影：</h1>
+        <div class="grid-16-8 clearfix">
+            <div class="article">
+    <div class="indent">
+
+    <script type="text/javascript" src="{% static 'js/jQuery-2.2.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/xs.js' %}"></script>
+        <script type="text/javascript">
+	               $(document).ready(function() {
+	               $(".xs_li_01").xs999(5);
+	              });
+    </script>
+
+        <div class="">
+    {% for film in h_films %}
+        <br>
+    <table width="90%" align="center">
+        <tr class="item">
+            <td width="155" valign="top">
+                <a class="nbg" href="../film_info/?film_get={{film.0}}"  title={{film.2}}>
+                        <img src="/static/douban_poster/{{film.1}}.jpg" width="150" />
+                </a>
+            </td>
+
+            <td valign="baseline">
+                <div class="pl2">
+                    <a href="../film_info/?film_get={{film.0}}"  class="">
+                        {{film.2}}
+                        <br>
+                    </a>
+                    <br>
+                    <p class="pl">{{film.3}}</p>
+                    <br>
+                        <div class="star clearfix">
+                            <span class="allstar20"></span>
+                            <span class="rating_nums">{{film.4}}</span>
+                            <span class="pl">({{film.5}}人评价)</span>
+                        </div>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+        <br>
+    {% endfor %}
+</div>
+    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <a href="#topAnchor" style="position:fixed; right:0; bottom:0">回到顶部</a>
+{% endblock %}

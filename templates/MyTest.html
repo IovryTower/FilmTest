@@ -1,0 +1,68 @@
+﻿<!DOCTYPE>
+<html>
+
+{% load static %}
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mytest</title>
+<base href="/">
+
+<script type="text/javascript" src="{% static 'js/jQuery-2.2.4.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/xs.js' %}"></script>
+
+</head>
+
+<body>
+
+<div  id="menu" 
+style="height:4535px;width:801px" 
+class="xs_li_01" >
+  <h3> </h3>
+  <p> </p></a>
+	<p> <font size="5">Hello World!</font></p>
+	<p> <span lang="zh-cn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </p>
+
+
+{#    <form method="get" action="film/search" style="width: 785px; height: 134px">#}
+    <form method="get" action="" style="width: 785px; height: 134px">
+		 <p>
+             电影文件（如：douban.csv）：
+            <input type="text" name="T_search" size="50">
+            <input type="submit" value="start" name="B1">
+            <input type="reset" value="重置" name="B2">
+         </p>
+
+        <iframe src="" hidden="hidden" width="1" height="1" frameborder="0" name="frameName"></iframe>
+
+
+    </form>
+
+    <br>
+    <form method="get" action="film/get_all" style="width: 785px; height: 134px">
+        <button name="Show_all"><span lang="zh-cn">显示所有</span>
+        </button>
+    </form>
+    <br>
+
+	<img border="0" src="../static/images/001.jpg" width="584" height="389">
+
+    <img border="0" src="../static/douban_poster/film1%20-%20这个杀手不太冷é.jpg" width="270" height="402">
+    <img src="../static/douban_poster/film3 - 泰坦尼克号.jpg" >
+
+    <script type="text/javascript">
+	               $(document).ready(function() {
+	               $(".xs_li_01").xs999(5);
+	              });
+    </script>
+
+
+</div>
+
+</body>
+
+
+
+</html>
+

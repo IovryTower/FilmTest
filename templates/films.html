@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——电影分类{% endblock %}
+
+{% block content %}
+    <div class="container" style="background: grey">
+
+		<!-- jQuery (Bootstrap 插件需要引入) -->
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- 包含了所有编译插件 -->
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+			<h2 class="text-center" style="color: white">你想看的影视介绍这里全都有</h2>
+			<p class="text-center" style="color: white">发布优质评论可得丰厚奖励</p>
+
+            <div class="panel-body">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+                <div class="panel-group" id="accordion">
+
+                    {% for film_get_all in   film_all_list %}
+                        <div class="panel panel-default text-center" >
+                        <div class="panel-heading" style="background: #cc4c49">
+                            <h4 class="panel-title" >
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href={{ film_get_all.1 }}>
+                                    {{ film_get_all.0}}
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id={{ film_get_all.2 }} class="collapse">
+                            <div class="panel-body">
+
+                                  <div class="text-center" style="margin-bottom:0">
+                                      <ul class="nav nav-tabs">
+                                          {% for page_href in film_get_all.4 %}
+                                              {% if "1" in page_href.1%}
+                                                  <li><a class="active" data-toggle="tab" href={{ page_href.0 }}>{{ page_href.1 }}</a></li>
+                                              {% else %}
+                                                  <li><a data-toggle="tab" href={{ page_href.0 }} >{{ page_href.1 }}</a></li>
+                                              {% endif %}
+                                          {% endfor %}
+                                      </ul>
+
+                                        <div class="tab-content">
+                                            {% for film_get in film_get_all.3 %}
+                                                 <div class={{ film_get.2 }} id={{ film_get.1 }}>
+                                                        {% for film_num in film_get.0 %}
+                                                    <div class="col-md-4" >
+                                                      <ul class="list-group" >
+                                                        <li class="list-group-item" style="background: bisque">
+                                                            <div class="basic-info">
+
+                                                                <div class="film-info">
+                                                                    <form  method="get" action="./../film_info" >
+
+                                                                    <h2 ><a name="film_get_title" style="text-decoration: none;color: red"
+                                                                    href={{ film_num.film_action_title}}>
+                                                                        {{ film_num.film_action_name }}</a></h2>
+                                                                    <span class="label label-default">{{ film_num.film_action_tag1 }}</span>
+                                                                    <span class="label label-primary">{{ film_num.film_action_tag2 }}</span>
+                                                                    <span class="label label-success">{{ film_num.film_action_tag3 }}</span>
+                                                                    <span class="label label-info">{{ film_num.film_action_tag4 }}</span>
+                                                                    <span class="label label-warning">{{ film_num.film_action_tag5 }}</span>
+                                                                    <div class="fakeimg">存放电影的图片</div>
+                                                                    <p>{{ film_num.film_action_grade }}</p>
+                                                                    <p>这里存放电影的影评介绍</p>
+
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
+                                                      </ul>
+                                                     </div>
+                                                        {% endfor %}
+                                                 </div>
+                                            {% endfor %}
+                                        </div>
+
+                                  </div>
+                            </div>
+                        </div>
+                     </div>
+                    {% endfor %}
+
+                </div>
+        </div>
+            <script type="text/javascript">
+	               $(document).ready(function() {
+	               $(".container").xs999(5);
+	              });
+           </script>
+    </div>
+
+{% endblock %}

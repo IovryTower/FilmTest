@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——管理员{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div>
+
+        <form style="margin-left: 10%" href="../manage" method="post">
+            {% csrf_token %}
+            <input id="to_delete" name="single_name" placeholder="用户名">
+            <input id="to_delete" name="input_comments" placeholder="评论">
+            <input id="to_delete" name="input_film" placeholder="电影id">
+            <input id="to_delete" name="pass_del" placeholder="确认删除密码">
+            <button >
+                Delete
+            </button>
+        </form>
+
+    <div style="width: 40%; float:left;margin-left: 5%">
+    {% for user_all in user_info %}
+        <div class="my_button" style="background: #00BFF0;width: 470px;height: 300px">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div style="color: #fffaff;height: 50px">
+            名字：{{ user_all.0 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            性别：{{ user_all.2 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            邮箱地址：{{ user_all.3 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            喜欢的电影标签：{{ user_all.4 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            地址：{{ user_all.5 }}
+        </div>
+        </div>
+        <br>
+    {% endfor %}
+    </div>
+
+    <div style="width: 40%; float:left;margin-left: 5%">
+    {% for comment_all in comment_sql %}
+        <div class="my_button" style="background: #00BFF0;width: 470px;height: 300px">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div style="color: #000000;height: 50px">
+            评论：{{ comment_all.0 }}
+        </div>
+        <div style="color: #fffaff;height: 50px">
+            用户名：{{ comment_all.1 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            电影ID：{{ comment_all.2 }}
+        </div>
+        <div style="color: #000000;height: 50px">
+            评论时间：{{ comment_all.3 }}
+        </div>
+        </div>
+        <br>
+    {% endfor %}
+    </div>
+
+    </div>
+
+{% endblock %}

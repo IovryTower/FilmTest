@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+<meta charset="utf-8">
+
+<script type="text/javascript" src="{% static 'js/new/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/new/script.js' %}"></script>
+    <style>
+        /* wrap */
+        .wrap{margin:50px auto;width:1134px;height:437px;position:relative;overflow:hidden;}
+        .pic{width:270px;height:400px;cursor:pointer;}
+        .pic1{background:url('/static/douban_poster/{{h_films.1.1}}.jpg');position:absolute;top:0;left:0;z-index:1;}
+        .pic2{background:url('/static/douban_poster/{{h_films.2.1}}.jpg');position:absolute;top:0;left:300px;z-index:3;}
+        .pic3{background:url('/static/douban_poster/{{h_films.3.1}}.jpg');position:absolute;top:0;left:400px;z-index:5;}
+        .pic4{background:url('/static/douban_poster/{{h_films.4.1}}.jpg');position:absolute;top:0;left:500px;z-index:7;}
+        .pic5{background:url('/static/douban_poster/{{h_films.5.1}}.jpg');position:absolute;top:0;left:600px;z-index:9;}
+        .pic6{background:url('/static/douban_poster/{{h_films.6.1}}.jpg');position:absolute;top:0;left:700px;z-index:11;}
+        .pic7{background:url('/static/douban_poster/{{h_films.7.1}}.jpg');position:absolute;top:0;left:800px;z-index:13;}
+    </style>
+</head>
+<body>
+    <h2 class="my_button" style="color: #cc1111">
+        遇见好电影
+        <a href="../encounter" style="font-size: 15px">
+            换一批&raquo;</a>
+    </h2>
+<div class="wrap">
+	<a class="pic1 pic" href="../film_info/?film_get={{h_films.1.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.1.2}}
+	</a>
+	<a class="pic2 pic" href="../film_info/?film_get={{h_films.2.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.2.2}}
+	</a>
+	<a class="pic3 pic" href="../film_info/?film_get={{h_films.3.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.3.2}}
+	</a>
+	<a class="pic4 pic" href="../film_info/?film_get={{h_films.4.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.4.2}}
+	</a>
+	<a class="pic5 pic" href="../film_info/?film_get={{h_films.5.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.5.2}}
+	</a>
+	<a class="pic6 pic" href="../film_info/?film_get={{h_films.6.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.6.2}}
+	</a>
+    <a class="pic7 pic" href="../film_info/?film_get={{h_films.7.0}}" style="font-size: large; color: #ebebeb">
+        {{h_films.7.2}}
+	</a>
+</div>
+
+
+</body>
+{% endblock %}

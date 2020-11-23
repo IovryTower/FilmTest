@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——电影详情{% endblock %}
+<script type="text/javascript">
+	jQuery(document).ready(function () {
+	    $(".rating-kv").rating();
+	});
+	function gradeScored(){
+	var score = $("#score").val();
+	//alert(score);
+	 $.post("${base}/test/gradeScore.jspx",{id:id,score:score},
+	     function(data){
+		   alert("评分成功");
+		 },
+		"html");
+	}
+</script>
+
+{% block content %}
+    <div class="container navbar" style="background: #96d2ff; width: 97%">
+        <div class="row" >
+            <br />
+                <h2 class="text-center" style="color: #fffaff">《{{ concrete_film_view.film_title }}》电影详情介绍</h2>
+            <br />
+        </div>
+
+        <div class="navbar-left" style="background: #fffaff;width: 100%">
+            <br />
+            <div class="col-sm-3 ">
+{#                <img src="/static/images/miss_h.jpg" style="width: 270px;height: 400px">#}
+                <img src="/static/douban_poster/{{ concrete_film_view.html_film_poster }}.jpg" style="width: 250px;height: 350px">
+			</div>
+
+			<div class="col-sm-4 ">
+                <h2>{{ concrete_film_view.film_title }}</h2>
+                <p>
+                    导演：
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director1 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director2 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director3 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director4 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director5 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_director6 }}</a>
+
+                </p>
+                <p>
+                    编剧：
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist1 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist2 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist3 }}</a>
+                </p>
+                <p>
+                    主演：
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main1 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main2 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main3 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main4 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main5 }}</a>
+                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main6 }}</a>
+                </p>
+                <p>类型： {{ concrete_film_view.film_type }}</p>
+                <p>{{ concrete_film_view.film_synopsis }}</p>
+                <div>
+                    <br>
+                    电影标签：
+                    <span class="label label-default">{{ concrete_film_view.film_concrete_tag1 }}</span>
+                    <span class="label label-primary">{{ concrete_film_view.film_concrete_tag2 }}</span>
+                    <span class="label label-success">{{ concrete_film_view.film_concrete_tag3 }}</span>
+                    <span class="label label-info">{{ concrete_film_view.film_concrete_tag4 }}</span>
+                    <span class="label label-warning">{{ concrete_film_view.film_concrete_tag5 }}</span>
+                    <br>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-sm-offset-1">
+                <h2>简影评分：<a style="color: red;text-decoration: none">{{ concrete_film_view.film_grade }}</a></h2>
+
+                <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+                <link href="/static/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+                <script src="/static/js/star-rating.js" type="text/javascript"></script>
+                <form action=""  method="post" style="width: 785px; height: 200px">
+                    {% csrf_token %}
+
+                     {% if  concrete_film_view.html_to_score %}
+                         <p> 你的评分：{{ concrete_film_view.html_to_score}}分</p>
+                          <input class="my_button" name="score" type="number" class="rating" readonly="readonly"
+                                 value={{ concrete_film_view.html_to_score}}>
+                     {% else %}
+                         <input name="score" value="0" type="number" class="rating" min=0 max=10 step=0.5 data-size="sm">
+                         <input hidden="hidden" class="text" name="film_title_score" value={{ concrete_film_view.html_id }} >
+                         <input class="my_button" style="padding: 10px 15px" type="submit" value="评分" name="submit" onclick="gradeScored()">
+                     {% endif %}
+
+                </form>
+                <br> <br>
+                <form action=""  method="post" style="width: 785px; height: 200px">
+                    {% csrf_token %}
+                    {% if concrete_film_view.html_to_coll  %}
+                        <p>已收藏</p>
+                    {% else %}
+                        <input hidden="hidden" class="text" name="film_title_coll" value={{ concrete_film_view.html_id }} >
+                        <input class="my_button" style="padding: 10px 15px" type="submit" value="收藏"  name="collect">
+                    {% endif %}
+                </form>
+
+            </div>
+
+        </div>
+        <br>
+        <div class="nav navbar-left" style="background: white;width: 100%">
+            <form role="form" name="form1" action="" method="post">
+                {% csrf_token %}
+                <br/>
+                <div class="form-group">
+                    <div class="col-sm-12 ">
+                        <label class="text-center" for="name" style="color: grey">发表评论</label>
+                        <input class="form-control nav navbar-left text-center" placeholder="在这里填写发布你的评论···"
+                               name="comment_content" id="comment_id">
+                        <input hidden="hidden" class="text" name="film_title" value={{ concrete_film_view.html_id }} >
+                    </div>
+
+                </div>
+                <br/>
+                <div class="form-group">
+                    <div class="nav">
+                        <button  type="submit" class="btn btn-default">发表评论</button>
+                    </div>
+                </div>
+            </form>
+
+            <br>
+
+            <div class="nav">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background: bisque">
+                            <h3 class="panel-title text-left" >
+                                《{{ concrete_film_view.film_title }}》的相关评论...（
+                                <a href="#" style="text-decoration-skip: box-decoration">全部{{ concrete_film_view.com_length }}条</a>）
+                            </h3>
+                        </div>
+                    </div>
+
+                    {% for comment in concrete_film_view.all_com %}
+                        <div class="text-left">
+                        <hr class="simple" color="#111111" />
+                        <span >
+                            <a style="text-decoration: none;width: 100%" href={{ comment.other_href }}>{{ comment.user_name }}</a>：
+                           {{ comment.content_str }}
+                            &nbsp&nbsp&nbsp&nbsp&nbsp
+                            <span class="pull-right" style="color: grey">{{ comment.com_time }}</span>
+                        </span>
+                        <hr/>
+                    </div>
+                    {% endfor %}
+
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            <div class="nav">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background: palegreen">
+                            <h3 class="panel-title text-left" >
+                                喜欢这部电影的人也喜欢......
+                            </h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <div class="row" >
+                                {% for fim_like in concrete_film_view.html_film_like_list %}
+
+                                <div class="col-sm-3 col-md-3" >
+                                    <ul class="list-group">
+                                        <li class="list-group-item" style="background: bisque">
+{#                                            <img src="../static/douban_poster/{{ concrete_film_view.html_film_poster }}.jpg"#}
+{#                                                 style="width: 220px;height: 300px">#}
+
+                                            <img src="../static/douban_poster/film3 - 泰坦尼克号.jpg" >
+                                            <a href="../film_info/?film_get={{ fim_like }}" style="text-decoration: none;color: black;width: 100%">
+                                                {{ fim_like }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+                            <a href="../encounter/" class=text-center" style="text-decoration: none;color: black">
+                                更多电影
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

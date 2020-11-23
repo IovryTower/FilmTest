@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}简影JanFilm——个性化推荐{% endblock %}
+
+{% block content %}
+    <div class="container text-center" style="height: 400px; background: brown">
+        <div>
+            {% if out_list %}
+            <div class="row" >
+                <br />
+                    <h4 class="text-center" style="color: white">根据您的喜好设置，我们有如下电影推荐</h4>
+                <br />
+            </div>
+            {% else %}
+            <div class="row" >
+                <br />
+                    <h4 class="text-center" style="color: white">你还没有设置标签，请去主页设置标签</h4>
+                <br />
+            </div>
+            {% endif %}
+            {% for concrete_film_view in out_list %}
+
+                <div class="navbar-left" style="background: white;width: 100%">
+                        <br />
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <img src="/static/douban_poster/{{concrete_film_view.poster_id}}.jpg" style="width: 200px;height: 300px">
+                            </div>
+                            <div class="col-sm-7 text-left" >
+                                <h3><a href="../film_info/?film_get={{ concrete_film_view.id }}" style="text-decoration: none;">{{ concrete_film_view.film_title }}</a></h3>
+                                <p>
+                                    导演：
+                                    <a href="https://www.so.com/s?src=360chrome_home_www&q={{ concrete_film_view.film_director1 }}"
+                                       style="text-decoration: none" target="_blank">{{ concrete_film_view.film_director1 }}</a>
+                                    <a href="https://www.so.com/s?src=360chrome_home_www&q={{ concrete_film_view.film_director2 }}"
+                                       style="text-decoration: none" target="_blank">{{ concrete_film_view.film_director2 }}</a>
+                                    <a href="https://www.so.com/s?src=360chrome_home_www&q={{ concrete_film_view.film_director3}}"
+                                       style="text-decoration: none" target="_blank">{{ concrete_film_view.film_director3 }}</a>
+                                    <a href="https://www.so.com/s?src=360chrome_home_www&q={{ concrete_film_view.film_director4 }}"
+                                       style="text-decoration: none" target="_blank">{{ concrete_film_view.film_director4}}</a>
+                                    <a href="https://www.so.com/s?src=360chrome_home_www&q={{ concrete_film_view.film_director5 }}"
+                                       style="text-decoration: none" target="_blank">{{ concrete_film_view.film_director5 }}</a>
+
+                                </p>
+                                <p>
+                                    编剧：
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist1 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist2 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist3 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist4 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist5 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_scenarist6 }}</a>
+                                </p>
+                                <p>
+                                    主演：
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main1 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main2 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main3 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main4 }}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main5}}</a>
+                                    <a href="#" style="text-decoration: none">{{ concrete_film_view.film_concrete_main6 }}</a>
+
+                                </p>
+                                <p>类型： {{ concrete_film_view.film_type }}</p>
+                                <p>{{ concrete_film_view.film_synopsis }}</p>
+                                <div>
+                                    <br>
+                                    电影标签：
+                                    <span class="label label-default">{{ concrete_film_view.film_concrete_tag1 }}</span>
+                                    <span class="label label-primary">{{ concrete_film_view.film_concrete_tag2 }}</span>
+                                    <span class="label label-success">{{ concrete_film_view.film_concrete_tag3 }}</span>
+                                    <span class="label label-info">{{ concrete_film_view.film_concrete_tag4 }}</span>
+                                    <span class="label label-warning">{{ concrete_film_view.film_concrete_tag5 }}</span>
+                                    <br>
+                                </div>
+                                <br>
+                                <h4>推荐指数：<a style="color: red;text-decoration: none">{{ concrete_film_view.rec_score }}星</a></h4>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}用户主页{% endblock %}
+
+<script type="text/javascript">
+	function editUserPersonal(){
+	}
+</script>
+
+
+{% block content %}
+    <div class="container" style="background: white;background: #c8f0f0">
+        <div class="row" >
+            <br />
+            <div class="col-sm-3 col-md-2">
+                <div class="thumbnail text-center">
+                    <img src= "{{ request.session.user_pic }}" style="width: 150px; height: 155px">
+                    <a href="#" class="text-center" style="text-decoration: none;color: #0f0f0f" data-toggle="modal" data-target="#edit_user_pic">
+                        修改我的头像
+                    </a>
+                    {% ifequal username "1" %}
+                    <a href="../manage" >
+                        进入管理
+                    </a>
+                    {% endifequal %}
+                    <div class="modal fade" id="edit_user_pic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form class='form-userinfo' action="../user_page/" method="get">
+                                    <div class="form-group">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">修改个人头像</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="edit_user_pic">图片地址：</label>
+                                            <input type="text" name= "edit_user_pic" placeholder="在这里填入你的新的头像的网址" style="width: 85%">
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <input type="submit" class="btn btn-primary" value="确认修改">
+                                    </div>
+                                </form>
+
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-6" >
+                <ul class="list-group">
+                    <li class="list-group-item" style="background: bisque">用户名：{{ request.session.user_name }}</li>
+                    <li class="list-group-item" style="background: seashell">性别：{{ request.session.user_sex }}</li>
+                    <li class="list-group-item" style="background: #ebccd1">
+                        个性签名：{{ request.session.user_personal }}
+                        <a href="#" class="pull-right" style="text-decoration: none" data-toggle="modal" data-target="#edit_personal">
+                            修改
+                        </a>
+                        <!-- 模态框（Modal） -->
+                        <div class="modal fade" id="edit_personal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <form class='form-userinfo' action="../user_page/" method="get">
+                                        <div class="form-group">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">修改个性签名</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="edit_personal">修改为：</label>
+                                                <input type="text" name= "edit_personal" placeholder="在这里填入你的新的个性签名" style="width: 85%">
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <input type="submit" class="btn btn-primary" value="确认修改"></input>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </li>
+                    <li class="list-group-item" style="background: goldenrod">
+                        电影标签：{{ request.session.user_movie_tag }}
+                        <a href="#" class=" pull-right" style="text-decoration: none" data-toggle="modal" data-target="#edit_movie_tag">修改</a>
+                        <!-- 模态框（Modal） -->
+                         <div class="modal fade" id="edit_movie_tag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <form class='form-userinfo' action="../user_page/" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">修改电影标签</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                 <label><input name="check_box_list" type="checkbox" value="剧情"> 剧情</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="儿童"> 儿童</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="动作"> 动作</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="爱情"> 爱情</label> <br>
+                                                 <label><input name="check_box_list" type="checkbox" value="战争"> 战争</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="武侠"> 武侠</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="悬疑"> 悬疑</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="犯罪"> 犯罪</label> <br>
+                                                 <label><input name="check_box_list" type="checkbox" value="喜剧"> 喜剧</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="奇幻"> 奇幻</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="冒险"> 冒险</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="短片"> 短片</label> <br>
+                                                 <label><input name="check_box_list" type="checkbox" value="情色"> 情色</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="惊悚"> 惊悚</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="动画"> 动画</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="恐怖"> 恐怖</label> <br>
+                                                 <label><input name="check_box_list" type="checkbox" value="历史"> 历史</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="戏曲"> 戏曲</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="音乐"> 音乐</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="运动"> 运动</label> <br>
+                                                 <label><input name="check_box_list" type="checkbox" value="历史"> 历史</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="灾难"> 灾难</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="歌舞"> 歌舞</label>
+                                                 <label><input name="check_box_list" type="checkbox" value="鬼怪"> 鬼怪</label> <br>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <input type="submit" class="btn btn-primary" value="确认修改">
+                                        </div>
+                                    </form>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 col-md-4" >
+                <ul class="list-group" >
+                    <li class="list-group-item" style="background: bisque">
+                        <div class="basic-info">
+                            <div class="user-info">
+                                常居地：{{ request.session.user_address }}
+                                <a href="#" class=" pull-right" style="text-decoration: none" data-toggle="modal" data-target="#edit_address">修改</a>
+                                <!-- 模态框（Modal） -->
+                                <div class="modal fade" id="edit_address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <form class='form-userinfo' action="/user_page/" method="get">
+                                                <div class="form-group">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">修改长居地址</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label for="edit_movie_tag">修改为：</label>
+                                                        <input type="text" name= "edit_address" placeholder="在这里填入你的新的长居地址" style="width: 85%">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                    <input type="submit" class="btn btn-primary" value="确认修改">
+                                                </div>
+                                            </form>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
+                                </div>
+                                <br />
+                            <div class="pl">
+                                用户ID：{{ request.session.user_id }} <br/>
+                                注册时间：{{ request.session.user_c_time }}</div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: #5bc0de">
+                <h3 class="panel-title" >
+                    我的收藏
+                </h3>
+            </div>
+            <div class="panel-body text-center">
+
+                <div class="row" >
+                    {% for coll_one1 in film_collection %}
+                        <div class="col-sm-3 col-md-3" >
+                            <ul class="list-group">
+                                <li class="list-group-item" style="background: bisque">
+                                    <img src="/static/douban_poster/{{coll_one1.2}}.jpg"style="width: 175px; height: 250px">
+                                </li>
+                                <li class="list-group-item text-center" style="background: goldenrod">
+                                    <a href="../film_info/?film_get={{ coll_one1.0 }}" style="text-decoration: none;color: black">
+                                        {{ coll_one1.1 }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: #5bc0de">
+                <h3 class="panel-title" >
+                    我的评论
+                </h3>
+            </div>
+            <div class="panel-body">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <div class="panel-group" id="accordion">
+                    {% for com_one in all_user_com_list %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#{{ com_one.collapse }}" style="text-decoration: none">
+                                《{{ com_one.c_film_title }}》：评论时间“{{ com_one.com_time }}”，点击展开详情
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{ com_one.collapse }}" class="collapse">
+                            <div class="panel-body">
+                                你的评论：
+                                <a href="../film_info/?film_get={{ com_one.id }}" style="text-decoration: none;color: black">
+                                        {{ com_one.c_content_str }}
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
